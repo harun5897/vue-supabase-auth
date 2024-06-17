@@ -82,7 +82,7 @@ onMounted(async()=> {
               @emit-data-form="getEmitPassword"
             />
             <FormCheck label="Remember me" />
-            <ButtonBlock label="Login" @click="trigerSignInPasswordEmail" />
+            <ButtonBlock label="Login" class="mt-3" @click="trigerSignInPasswordEmail" />
             <div class="text-center mt-3">
               <span>or login with</span>
             </div>

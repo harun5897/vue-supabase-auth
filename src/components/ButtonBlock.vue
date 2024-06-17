@@ -8,7 +8,7 @@ const props = defineProps({
 <template>
   <div class="d-grid gap-2">
     <button
-      :class="`btn btn-${props.type ?? 'primary'} mt-3 py-2`"
+      :class="`btn btn-${props.type ?? 'primary'} py-2`"
       type="button"
     >
       {{ props.label ?? "Example label" }}

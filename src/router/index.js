@@ -21,6 +21,11 @@ const router = createRouter({
       component: () => import("@/views/DataTable.vue"),
     },
     {
+      path: "/forgot-password",
+      name: "forgot-password",
+      component: () => import("@/views/ForgotPassword.vue"),
+    },
+    {
       path: "/update-password",
       name: "update-password",
       component: () => import("@/views/UpdatePassword.vue"),
