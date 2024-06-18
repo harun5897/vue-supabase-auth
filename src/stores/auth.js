@@ -5,6 +5,9 @@ import { supabase } from "@/utils/supabaseConnection.js";
 export const useAuthStore = () => {
   const email = ref('')
   const password = ref('')
+  const emailForgotPassword = ref('')
+  const passwordForgotPassword = ref('')
+  const sendEmailSuccess = ref(false)
 
   const signInPasswordEmail = async() => {
     const FormSchema = z.object({
@@ -97,12 +100,35 @@ export const useAuthStore = () => {
       message: 'Sign out is success'
     }
   }
+  const sendEmailForgotPassword = async() => {
+    const { error } = await supabase.auth.resetPasswordForEmail(emailForgotPassword.value, {
+      redirectTo: `${import.meta.env}/update-password`,
+    })
+    if(error) {
+      return {
+        isSuccess: false,
+        data: '',
+        message: error.message
+      }
+    }
+    return {
+      isSuccess: true,
+      data: '',
+      message: 'Send email is success'
+    }
+  }
   return {
+    // REF
     email,
     password,
+    emailForgotPassword,
+    sendEmailSuccess,
+    passwordForgotPassword,
+    // Method
     signInPasswordEmail,
     signInFacebook,
     signInGoogle,
     signOut,
+    sendEmailForgotPassword,
   }
 }

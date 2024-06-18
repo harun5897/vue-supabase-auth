@@ -21,9 +21,9 @@ watch(dataForm, (newDataForm) => {
       <label :for="`form-${type}`" class="form-label">
         {{ props.label ?? "Example Label" }}
       </label>
-      <a :href="props.linkTo ?? '#'">
+      <RouterLink :to=props.linkTo>
         {{ props.labelLink ?? "Example Link" }}
-      </a>
+      </RouterLink>
     </div>
     <input
       :type="props.type ?? 'text'"

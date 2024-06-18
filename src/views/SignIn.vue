@@ -78,6 +78,7 @@ onMounted(async()=> {
               type="password"
               label="Password"
               labelLink="Forgot Password"
+              linkTo="/forgot-password"
               placeholder="Enter 6 character or more"
               @emit-data-form="getEmitPassword"
             />
