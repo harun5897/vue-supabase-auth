@@ -7,7 +7,7 @@ export const useAuthStore = () => {
   const password = ref('')
   const emailForgotPassword = ref('')
   const newPassword = ref('')
-  const sendEmailSuccess = ref(false)
+  const sendEmailSuccess = ref(false)   
 
   const signInPasswordEmail = async() => {
     const FormSchema = z.object({
@@ -102,7 +102,7 @@ export const useAuthStore = () => {
   }
   const sendEmailForgotPassword = async() => {
     const { error } = await supabase.auth.resetPasswordForEmail(emailForgotPassword.value, {
-      redirectTo: `${import.meta.env}/update-password`,
+      redirectTo: `${import.meta.env.VITE_BASE_URL}/update-password`,
     })
     if(error) {
       return {
