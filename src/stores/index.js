@@ -61,11 +61,15 @@ export const useDataStore = () => {
   };
 
   return {
+    // REF
     dataEducationLevel,
     dataSubEducationLevel,
+    // REACTIVE
     selectedEducationLevel,
     selectedSubEducationLevel,
+    //COMPUTED
     getSubEducationLevel,
+    // METHOD
     mutateSelectedEducationLevel,
     mutateSelectedSubEducationLevel,
     validationOnSelectSubEducationLevel,

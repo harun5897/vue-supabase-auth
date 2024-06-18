@@ -1,19 +1,25 @@
 <script setup>
 import FormControl from "@/components/FormControl.vue"
 import ButtonBlock from "@/components/ButtonBlock.vue"
-import { supabase } from "@/utils/supabaseConnection.js";
-import { ref } from "vue";
+import router from "@/router"
+import { useAuthStore } from "@/stores/auth.js";
 
-const password = ref('')
+const { 
+  newPassword,
+  updatePassword
+} = useAuthStore()
 
-const getEmitPassword = (value) => {
-  password.value = value
-}
 const trigerUpdatePassword = async() => {
-  const { data, error } = await supabase.auth.updateUser({ password: password.value })
-
-  console.log('data => ', data)
-  console.log('error => ', error)
+  const resultUpdatePassword = await updatePassword()
+  if(!resultUpdatePassword.isSuccess) {
+    alert(resultUpdatePassword.message)
+    return
+  }
+  aler(resultUpdatePassword.message)
+  router.push('/')
+}
+const getEmitPassword = (value) => {
+  newPassword.value = value
 }
 </script>
 

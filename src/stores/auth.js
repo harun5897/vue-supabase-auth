@@ -6,7 +6,7 @@ export const useAuthStore = () => {
   const email = ref('')
   const password = ref('')
   const emailForgotPassword = ref('')
-  const passwordForgotPassword = ref('')
+  const newPassword = ref('')
   const sendEmailSuccess = ref(false)
 
   const signInPasswordEmail = async() => {
@@ -117,18 +117,34 @@ export const useAuthStore = () => {
       message: 'Send email is success'
     }
   }
+  const updatePassword = async() => {
+    const { data, error } = await supabase.auth.updateUser({ password: newPassword.value })
+    if(error) {
+      return {
+        isSuccess: false,
+        data: '',
+        message: error.message,
+      }
+    }
+    return {
+      isSuccess: true,
+      data: '',
+      message: 'Update password is success'
+    }
+  }
   return {
     // REF
     email,
     password,
     emailForgotPassword,
     sendEmailSuccess,
-    passwordForgotPassword,
+    newPassword,
     // Method
     signInPasswordEmail,
     signInFacebook,
     signInGoogle,
     signOut,
     sendEmailForgotPassword,
+    updatePassword,
   }
 }
