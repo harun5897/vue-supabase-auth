@@ -15,7 +15,7 @@ const trigerUpdatePassword = async() => {
     alert(resultUpdatePassword.message)
     return
   }
-  aler(resultUpdatePassword.message)
+  alert(resultUpdatePassword.message)
   router.push('/')
 }
 const getEmitPassword = (value) => {
