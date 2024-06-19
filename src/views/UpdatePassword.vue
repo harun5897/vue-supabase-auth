@@ -6,7 +6,8 @@ import { useAuthStore } from "@/stores/auth.js";
 
 const { 
   newPassword,
-  updatePassword
+  confirmNewPassword,
+  updatePassword,
 } = useAuthStore()
 
 const trigerUpdatePassword = async() => {
@@ -18,8 +19,11 @@ const trigerUpdatePassword = async() => {
   alert(resultUpdatePassword.message)
   router.push('/')
 }
-const getEmitPassword = (value) => {
+const getEmitNewPassword = (value) => {
   newPassword.value = value
+}
+const getEmitConfirmNewPassword = (value) => {
+  confirmNewPassword.value = value
 }
 </script>
 
@@ -27,7 +31,8 @@ const getEmitPassword = (value) => {
   <div id="update-password">
     <div class="container d-flex justify-content-center">
       <div class="mt-5">
-        <FormControl label="Password" type="password" placeholder="Password" @emit-data-form="getEmitPassword" />
+        <FormControl label="New password" type="password" placeholder="New password" @emit-data-form="getEmitNewPassword" />
+        <FormControl label="Connfirm password" type="password" placeholder="Confirm password" @emit-data-form="getEmitConfirmNewPassword" />
         <ButtonBlock label="Update Password" @click="trigerUpdatePassword" />
       </div>
     </div>

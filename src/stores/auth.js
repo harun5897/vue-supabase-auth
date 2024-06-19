@@ -7,6 +7,7 @@ export const useAuthStore = () => {
   const password = ref('')
   const emailForgotPassword = ref('')
   const newPassword = ref('')
+  const confirmNewPassword = ref('')
   const sendEmailSuccess = ref(false)   
 
   const signInPasswordEmail = async() => {
@@ -118,6 +119,13 @@ export const useAuthStore = () => {
     }
   }
   const updatePassword = async() => {
+    if(confirmNewPassword.value !== newPassword.value) {
+      return {
+        isSuccess: false,
+        data: '',
+        message: 'Password does not match'
+      }
+    }
     const { data, error } = await supabase.auth.updateUser({ password: newPassword.value })
     if(error) {
       return {
@@ -139,6 +147,7 @@ export const useAuthStore = () => {
     emailForgotPassword,
     sendEmailSuccess,
     newPassword,
+    confirmNewPassword,
     // Method
     signInPasswordEmail,
     signInFacebook,

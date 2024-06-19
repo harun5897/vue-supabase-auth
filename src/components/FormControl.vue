@@ -19,7 +19,6 @@ watch(dataForm, (newDataForm) => {
       {{ props.label ?? "Example Label" }}
     </label>
     <input
-    id="test"
       :type="props.type ?? 'text'"
       class="form-control py-2 px-3"
       :placeholder="props.placeholder ?? 'Example placeholder'"
