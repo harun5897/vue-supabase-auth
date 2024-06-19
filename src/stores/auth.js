@@ -13,7 +13,7 @@ export const useAuthStore = () => {
   const signInPasswordEmail = async() => {
     const FormSchema = z.object({
       email: z.string().email({ message: "Invalid email address" }),
-      password: z.string().min(5, { message: "Must be 5 or fewer characters long" })
+      password: z.string().min(5, { message: "Must be 5 or more characters long" })
     })
     const resultFormValidation = FormSchema.safeParse({
       email: email.value,
@@ -119,6 +119,24 @@ export const useAuthStore = () => {
     }
   }
   const updatePassword = async() => {
+    const FormSchema = z.object({
+      newPassword: z.string()
+      .min(6, { message: "Must be 6 or more characters long" })
+      .max(15, { message: "Must be 15 or fewer characters long" })
+      .regex(new RegExp('.*[A-Z].*'), { message: "Must be including uppercase" })
+      .regex(new RegExp('.*[a-z].*'), { message: "Must be including lowercase" })
+      .regex(new RegExp('.*[0-9].*'), { message: "Must be including number" })
+      .regex(new RegExp('.*[!@#$%^&*()].*'), { message: "Must be including special character like ! @ # $ % ^ & * ( )" })
+    })
+    const resultFormValidation = FormSchema.safeParse({ newPassword: newPassword.value })
+    if(!resultFormValidation.success) {
+      const errorFormValidation = resultFormValidation.error.errors[0]
+      return {
+        isSuccess: false,
+        data: '',
+        message: `${errorFormValidation.path[0]}, ${errorFormValidation.message}`
+      }
+    }
     if(confirmNewPassword.value !== newPassword.value) {
       return {
         isSuccess: false,
