@@ -13,7 +13,7 @@ export const useAuthStore = () => {
   const signInPasswordEmail = async() => {
     const FormSchema = z.object({
       email: z.string().email({ message: "Invalid email address" }),
-      password: z.string().min(5, { message: "Must be 5 or more characters long" })
+      password: z.string().min(5, { message: "Must be 6 or more characters long" })
     })
     const resultFormValidation = FormSchema.safeParse({
       email: email.value,
@@ -102,6 +102,16 @@ export const useAuthStore = () => {
     }
   }
   const sendEmailForgotPassword = async() => {
+    const FormSchema = z.object({ email: z.string().email({ message: "Invalid email address" }) })
+    const resultFormValidation = FormSchema.safeParse({ email: emailForgotPassword.value })
+    if(!resultFormValidation.success) {
+      const errorFormValidation = resultFormValidation.error.errors[0]
+      return {
+        isSuccess: false,
+        data: '',
+        message: `${errorFormValidation.path[0]}, ${errorFormValidation.message}`
+      }
+    }
     const { error } = await supabase.auth.resetPasswordForEmail(emailForgotPassword.value, {
       redirectTo: `${import.meta.env.VITE_BASE_URL}/update-password`,
     })
