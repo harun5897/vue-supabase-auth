@@ -27,10 +27,19 @@ const getEmitEmail = (value) => {
   <div id="forgot-password">
     <div class="container d-flex justify-content-center">
       <div class="mt-5">
-        <p v-if="sendEmailSuccess">Please check your email "{{ emailForgotPassword }}" for your password reset link </p>
+        <p v-if="sendEmailSuccess">
+          Please check your email 
+          "{{ emailForgotPassword }}" 
+          for your password reset link 
+        </p>
         <div v-else>
           <form @submit.prevent="trigerSendEmail">
-            <FormControl label="Email" type="email" placeholder="you@exmaple.com" @emit-data-form="getEmitEmail" />
+            <FormControl 
+              label="Email" 
+              type="email" 
+              placeholder="you@exmaple.com" 
+              @emit-data-form="getEmitEmail" 
+            />
             <ButtonBlock label="Send Email" type="submit" />
           </form>
         </div>

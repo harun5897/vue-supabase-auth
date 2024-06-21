@@ -31,9 +31,21 @@ const getEmitConfirmNewPassword = (value) => {
   <div id="update-password">
     <div class="container d-flex justify-content-center">
       <div class="mt-5">
-        <FormControl label="New password" type="password" placeholder="New password" @emit-data-form="getEmitNewPassword" />
-        <FormControl label="Connfirm password" type="password" placeholder="Confirm password" @emit-data-form="getEmitConfirmNewPassword" />
-        <ButtonBlock label="Update Password" @click="trigerUpdatePassword" />
+        <form @submit.prevent="trigerUpdatePassword">
+          <FormControl 
+            label="New password" 
+            type="password" 
+            placeholder="New password" 
+            @emit-data-form="getEmitNewPassword" 
+          />
+          <FormControl 
+            label="Connfirm password" 
+            type="password" 
+            placeholder="Confirm password" 
+            @emit-data-form="getEmitConfirmNewPassword" 
+          />
+          <ButtonBlock label="Update Password" type="submit" />
+        </form>
       </div>
     </div>
   </div>
