@@ -2,14 +2,15 @@
 const props = defineProps({
   label: String,
   type: String,
+  buttonStyle: String,
 });
 </script>
 
 <template>
   <div class="d-grid gap-2">
     <button
-      :class="`btn btn-${props.type ?? 'primary'} py-2`"
-      type="button"
+      :class="`btn btn-${props.buttonStyle ?? 'primary'} py-2`"
+      :type="props.type ?? 'button'"
     >
       {{ props.label ?? "Example label" }}
     </button>

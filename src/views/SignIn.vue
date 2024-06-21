@@ -68,22 +68,24 @@ onMounted(async()=> {
         <div class="card border-0 shadow">
           <div class="card-body p-4">
             <HeaderSignIn class="mb-4" />
-            <FormControl
-              type="email"
-              label="Email Address"
-              placeholder="you@example.com"
-              @emit-data-form="getEmitEmail"
-            />
-            <FormControlV2
-              type="password"
-              label="Password"
-              labelLink="Forgot Password"
-              linkTo="/forgot-password"
-              placeholder="Enter 6 character or more"
-              @emit-data-form="getEmitPassword"
-            />
-            <FormCheck label="Remember me" />
-            <ButtonBlock label="Login" class="mt-3" @click="trigerSignInPasswordEmail" />
+            <form @submit.prevent="trigerSignInPasswordEmail">
+              <FormControl
+                type="email"
+                label="Email Address"
+                placeholder="you@example.com"
+                @emit-data-form="getEmitEmail"
+              />
+              <FormControlV2
+                type="password"
+                label="Password"
+                labelLink="Forgot Password"
+                linkTo="/forgot-password"
+                placeholder="Enter 6 character or more"
+                @emit-data-form="getEmitPassword"
+              />
+              <FormCheck label="Remember me" />
+              <ButtonBlock label="Login" type="submit" class="mt-3" />
+            </form>
             <div class="text-center mt-3">
               <span>or login with</span>
             </div>

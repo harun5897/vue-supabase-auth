@@ -69,7 +69,11 @@ const trigerSignOut = async() => {
         </ul>
       </div>
     </div>
-    <ButtonBlock label="SignOut" type="primary" class="mt-3" @click="trigerSignOut" />
+    <ButtonBlock 
+      label="SignOut" 
+      class="mt-3" 
+      @click="trigerSignOut" 
+    />
   </div>
 </template>
 
