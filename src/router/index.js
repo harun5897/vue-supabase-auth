@@ -34,7 +34,7 @@ const router = createRouter({
 });
 router.beforeEach(async(to) => {
   const { data } = await supabase.auth.getSession()
-  console.log(data)
+
   const isAuthenticated = data.session ? true : false
   if (!isAuthenticated && to.meta.requiresAuth) {
     return { name: 'signin' }
