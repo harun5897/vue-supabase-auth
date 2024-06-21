@@ -8,7 +8,8 @@ export const useAuthStore = () => {
   const emailForgotPassword = ref('')
   const newPassword = ref('')
   const confirmNewPassword = ref('')
-  const sendEmailSuccess = ref(false)   
+  const sendEmailSuccess = ref(false)
+  const loading = ref(false)
 
   const signInPasswordEmail = async() => {
     const FormSchema = z.object({
@@ -176,6 +177,7 @@ export const useAuthStore = () => {
     sendEmailSuccess,
     newPassword,
     confirmNewPassword,
+    loading,
     // Method
     signInPasswordEmail,
     signInFacebook,

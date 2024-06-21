@@ -5,6 +5,7 @@ import FormControlV2 from "@/components/FormControlV2.vue";
 import ButtonBlock from "@/components/ButtonBlock.vue";
 import HeaderSignIn from "@/components/HeaderSignIn.vue";
 import ButtonOutline from "@/components/ButtonOutline.vue";
+import LoadingButtonBlock from "@/components/LoadingButtonBlock.vue"
 import router from "@/router";
 import { useAuthStore } from "@/stores/auth.js";
 import { onMounted } from "vue"
@@ -14,11 +15,14 @@ const {
   signInFacebook,
   signInGoogle, 
   email, 
-  password 
+  password,
+  loading
 } = useAuthStore()
 
 const trigerSignInPasswordEmail = async () => {
+  loading.value = true
   const resultSignInPasswordEmail = await  signInPasswordEmail()
+  loading.value = false
   if(!resultSignInPasswordEmail.isSuccess) {
     alert(resultSignInPasswordEmail.message)
     return
@@ -84,7 +88,8 @@ onMounted(async()=> {
                 @emit-data-form="getEmitPassword"
               />
               <FormCheck label="Remember me" />
-              <ButtonBlock label="Login" type="submit" class="mt-3" />
+              <ButtonBlock v-if="!loading" label="Login" type="submit" class="mt-3" />
+              <LoadingButtonBlock v-else label="Login" class="mt-3" />
             </form>
             <div class="text-center mt-3">
               <span>or login with</span>
