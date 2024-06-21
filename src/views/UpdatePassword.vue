@@ -1,17 +1,21 @@
 <script setup>
 import FormControl from "@/components/FormControl.vue"
 import ButtonBlock from "@/components/ButtonBlock.vue"
+import LoadingButtonBlock from "@/components/LoadingButtonBlock.vue"
 import router from "@/router"
 import { useAuthStore } from "@/stores/auth.js";
 
 const { 
   newPassword,
   confirmNewPassword,
+  loading,
   updatePassword,
 } = useAuthStore()
 
 const trigerUpdatePassword = async() => {
+  loading.value = true
   const resultUpdatePassword = await updatePassword()
+  loading.value = false
   if(!resultUpdatePassword.isSuccess) {
     alert(resultUpdatePassword.message)
     return
@@ -44,7 +48,8 @@ const getEmitConfirmNewPassword = (value) => {
             placeholder="Confirm password" 
             @emit-data-form="getEmitConfirmNewPassword" 
           />
-          <ButtonBlock label="Update Password" type="submit" />
+          <ButtonBlock v-if="!loading" label="Update Password" type="submit" />
+          <LoadingButtonBlock v-else label="Update Password" />
         </form>
       </div>
     </div>

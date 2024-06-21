@@ -1,17 +1,20 @@
 <script setup>
 import FormControl from "@/components/FormControl.vue"
 import ButtonBlock from "@/components/ButtonBlock.vue"
+import LoadingButtonBlock from "@/components/LoadingButtonBlock.vue"
 import { useAuthStore } from "@/stores/auth.js";
 
 const { 
   emailForgotPassword,
   sendEmailSuccess,
+  loading,
   sendEmailForgotPassword,
-
 } = useAuthStore()
 
 const trigerSendEmail = async() => {
+  loading.value = true
   const resultSendEmailForgotPassword = await sendEmailForgotPassword()
+  loading.value = false
   if(!resultSendEmailForgotPassword.isSuccess) {
     alert(resultSendEmailForgotPassword.message)
     return
@@ -40,7 +43,8 @@ const getEmitEmail = (value) => {
               placeholder="you@exmaple.com" 
               @emit-data-form="getEmitEmail" 
             />
-            <ButtonBlock label="Send Email" type="submit" />
+            <ButtonBlock v-if="!loading" label="Send Email" type="submit" />
+            <LoadingButtonBlock v-else label="Send Email" />
           </form>
         </div>
       </div>
