@@ -23,12 +23,8 @@ const trigerUpdatePassword = async() => {
   alert(resultUpdatePassword.message)
   router.push('/')
 }
-const getEmitNewPassword = (value) => {
-  newPassword.value = value
-}
-const getEmitConfirmNewPassword = (value) => {
-  confirmNewPassword.value = value
-}
+const getEmitNewPassword = (value) => newPassword.value = value
+const getEmitConfirmNewPassword = (value) => confirmNewPassword.value = value
 </script>
 
 <template>

@@ -21,9 +21,7 @@ const trigerSendEmail = async() => {
   }
   sendEmailSuccess.value = true
 }
-const getEmitEmail = (value) => {
-  emailForgotPassword.value = value
-}
+const getEmitEmail = (value) => emailForgotPassword.value = value
 </script>
 
 <template>

@@ -10,6 +10,11 @@ const router = createRouter({
       component: () => import("@/views/SignIn.vue"),
     },
     {
+      path: "/sign-up",
+      name: "sign-up",
+      component: () => import("@/views/SignUp.vue"),
+    },
+    {
       path: "/education",
       name: "education",
       component: () => import("@/views/Education.vue"),
@@ -34,7 +39,6 @@ const router = createRouter({
 });
 router.beforeEach(async(to) => {
   const { data } = await supabase.auth.getSession()
-
   const isAuthenticated = data.session ? true : false
   if (!isAuthenticated && to.meta.requiresAuth) {
     return { name: 'signin' }

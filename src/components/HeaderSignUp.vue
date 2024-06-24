@@ -1,9 +1,8 @@
 <template>
   <div class="header-sign-in">
-    <h3 class="card-title">Login</h3>
+    <h3 class="card-title">Register</h3>
     <p class="card-text">
-      Doesn't have an account yet?
-      <RouterLink to="/sign-up">Sign Up</RouterLink>
+      Please fill in the fields bellow to register.
     </p>
   </div>
 </template>
@@ -15,8 +14,5 @@ h3 {
 p {
   color: grey;
   font-size: 14px;
-}
-a {
-  color: #893dff;
 }
 </style>

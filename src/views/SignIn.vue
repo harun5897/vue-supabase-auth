@@ -7,8 +7,8 @@ import HeaderSignIn from "@/components/HeaderSignIn.vue";
 import ButtonOutline from "@/components/ButtonOutline.vue";
 import LoadingButtonBlock from "@/components/LoadingButtonBlock.vue"
 import router from "@/router";
-import { useAuthStore } from "@/stores/auth.js";
 import { onMounted } from "vue"
+import { useAuthStore } from "@/stores/auth.js";
 
 const { 
   signInPasswordEmail, 
@@ -46,12 +46,8 @@ const trigerSignInGoogle = async () => {
   window.location.replace(resultSignInGoogle.data)
 }
 
-const getEmitEmail = (value) => {
-  email.value = value
-}
-const getEmitPassword = (value) => {
-  password.value = value
-}
+const getEmitEmail = (value) => email.value = value
+const getEmitPassword = (value) => password.value = value
 
 onMounted(async()=> {
   if(window.location.hash) {
