@@ -3,6 +3,7 @@ import HeaderSignUp from "@/components/HeaderSignUp.vue"
 import FormControl from "@/components/FormControl.vue"
 import ButtonBlock from "@/components/ButtonBlock.vue"
 import LoadingButtonBlock from "@/components/LoadingButtonBlock.vue"
+import router from "@/router";
 import { useAuthStore } from "@/stores/auth.js"
 const { 
   fullName,
@@ -21,9 +22,7 @@ const trigerSignUp = async() => {
     return
   }
   alert(resultSignUp.message)
-  fullName.value = ''
-  registerEmail.value = ''
-  registerPassword.value = ''
+  router.push('/')
 }
 const getEmitFullName = (value) => fullName.value = value
 const getEmitRegsiterEmail = (value) => registerEmail.value = value
