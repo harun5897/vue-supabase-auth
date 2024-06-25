@@ -21,11 +21,6 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: "/data-table",
-      name: "dataTable",
-      component: () => import("@/views/DataTable.vue"),
-    },
-    {
       path: "/forgot-password",
       name: "forgot-password",
       component: () => import("@/views/ForgotPassword.vue"),

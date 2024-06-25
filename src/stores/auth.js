@@ -61,7 +61,6 @@ export const useAuthStore = () => {
         message: error.message
       }
     }
-    console.log(data)
     return {
       isSuccess: true,
       data: '',

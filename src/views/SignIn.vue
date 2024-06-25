@@ -21,7 +21,7 @@ const {
 
 const trigerSignInPasswordEmail = async () => {
   loading.value = true
-  const resultSignInPasswordEmail = await  signInPasswordEmail()
+  const resultSignInPasswordEmail = await signInPasswordEmail()
   loading.value = false
   if(!resultSignInPasswordEmail.isSuccess) {
     alert(resultSignInPasswordEmail.message)
